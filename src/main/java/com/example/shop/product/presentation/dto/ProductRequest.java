@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 
 @Schema(description = "상품 등록/수정 요청 정보")
 public record ProductRequest(
+    String sellerId,
     @Schema(description = "상품명")
     String name,
     String description,
@@ -20,7 +21,9 @@ public record ProductRequest(
     public ProductCommand toCommand() {
 
         UUID operator = StringUtils.hasText(operatorId) ? UUID.fromString(operatorId) : null;
-        return new ProductCommand(name, description, price, stock, status, operator);
+        UUID seller = StringUtils.hasText(sellerId) ? UUID.fromString(sellerId) : null;
+
+        return new ProductCommand(seller, name, description, price, stock, status, operator);
     }
 
 }
