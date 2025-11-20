@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ResponseEntity<T> {
+
     private final int status;
     private final T data;
     private final long count;
