@@ -6,12 +6,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
+import lombok.Getter;
 
 @Entity
 @Table(name = "\"seller\"", schema = "public")
+@Getter
 public class Seller {
 
     @Id
@@ -48,12 +49,12 @@ public class Seller {
     }
 
     private Seller(String companyName,
-                   String representativeName,
-                   String email,
-                   String phone,
-                   String businessNumber,
-                   String address,
-                   String status) {
+        String representativeName,
+        String email,
+        String phone,
+        String businessNumber,
+        String address,
+        String status) {
         this.id = UUID.randomUUID();
         this.companyName = companyName;
         this.representativeName = representativeName;
@@ -65,22 +66,23 @@ public class Seller {
     }
 
     public static Seller register(String companyName,
-                                  String representativeName,
-                                  String email,
-                                  String phone,
-                                  String businessNumber,
-                                  String address,
-                                  String status) {
-        return new Seller(companyName, representativeName, email, phone, businessNumber, address, status);
+        String representativeName,
+        String email,
+        String phone,
+        String businessNumber,
+        String address,
+        String status) {
+        return new Seller(companyName, representativeName, email, phone, businessNumber, address,
+            status);
     }
 
     public void update(String companyName,
-                       String representativeName,
-                       String email,
-                       String phone,
-                       String businessNumber,
-                       String address,
-                       String status) {
+        String representativeName,
+        String email,
+        String phone,
+        String businessNumber,
+        String address,
+        String status) {
         this.companyName = companyName;
         this.representativeName = representativeName;
         this.email = email;
@@ -108,43 +110,5 @@ public class Seller {
         updatedAt = LocalDateTime.now();
     }
 
-    public UUID getId() {
-        return id;
-    }
 
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public String getRepresentativeName() {
-        return representativeName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getBusinessNumber() {
-        return businessNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
 }

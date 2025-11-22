@@ -21,9 +21,21 @@ spring:
   sql:
     init:
       mode: always
-
+  batch:
+    jdbc:
+      initialize-schema: always
+    task:
+      scheduling:
+        cron:
+          settlement: ${SETTLEMENT_CRON:-}
+          
 api:
   v1: /api/v1
+
+settlement:
+  async:
+    enabled: ${SETTLEMENT_ASYNC:false}
+    pool-size: ${SETTLEMENT_ASYNC_POOL_SIZE:5}
 
 payment:
   toss:
