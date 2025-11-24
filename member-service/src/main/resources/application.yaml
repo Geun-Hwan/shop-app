@@ -1,0 +1,15 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: member-service
+  config:
+    import: "optional:configserver:http://localhost:8888"
+  profiles:
+    active: default
+  cloud:
+    config:
+      fail-fast: false
+
+token:
+  secret: $2a$12$BGOISKi./PJOSYa8SpXHpeK0m5rFcvrtiFneJi3LUd2/3Pm4u8s1O
