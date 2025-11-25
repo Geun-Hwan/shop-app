@@ -26,6 +26,11 @@ public class MemberRepositryAdapter implements MemberRepository {
     }
 
     @Override
+    public Optional<Member> findByEmail(String email) {
+        return memberJpaRepository.findByEmail(email);
+    }
+
+    @Override
     public Member save(Member member) {
         return memberJpaRepository.save(member);
     }

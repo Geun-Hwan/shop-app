@@ -11,6 +11,8 @@ public interface MemberRepository {
 
     Optional<Member> findById(UUID id);
 
+    Optional<Member> findByEmail(String email);
+
     Member save(Member member);
 
     void deleteById(UUID id);

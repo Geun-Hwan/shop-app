@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 0
 spring:
   application:
     name: member-service
@@ -12,4 +12,4 @@ spring:
       fail-fast: false
 
 token:
-  secret: $2a$12$BGOISKi./PJOSYa8SpXHpeK0m5rFcvrtiFneJi3LUd2/3Pm4u8s1O
+  secretKey: Xa9fL2mQ7pR3T8vW4yB6N1qH0zE5U3dJ8kF2tV6wM9cD1rP4sA7gH2lK5oM8bR0Ab1C2D3E4
