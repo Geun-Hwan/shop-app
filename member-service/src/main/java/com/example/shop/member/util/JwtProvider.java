@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class JwtProvider {
 
-    @Value("${token.secretKey}")
+    @Value("${token.secret}")
     private String TOKEN_SECRET;
 
         //    1hour
