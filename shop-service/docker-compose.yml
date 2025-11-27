@@ -1,0 +1,40 @@
+
+services:
+  kafka:
+    image: apache/kafka:4.1.1
+    container_name: shop-kafka
+    ports:
+      - "29092:29092"  # 호스트 → PLAINTEXT_HOST
+    environment:
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_NODE_ID: 0
+      KAFKA_PROCESS_ROLES: controller,broker
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 0@shop-kafka:29093
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:29093,PLAINTEXT_HOST://:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://shop-kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+    volumes:
+      - kafka-data:/var/lib/kafka/data  # 메시지 영속화
+
+  elasticsearch:
+    build:
+      context: .  # Dockerfile 위치
+    image: elasticsearch:8.18.8
+    container_name: shop-es
+    ports:
+      - "9200:9200"
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"  # JVM 힙 메모리
+    volumes:
+      - es-data:/usr/share/elasticsearch/data  # 데이터 영속화
+
+volumes:
+  kafka-data:
+  es-data:
