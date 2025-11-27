@@ -10,9 +10,24 @@ spring:
   cloud:
     config:
       fail-fast: false
+  elasticsearch:
+    uris: http://localhost:9200
+    connection-timeout: 1s
+    socket-timeout: 3s
 
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: refresh, health, beans, info
+kafka:
+  # 로컬 도커 브로커 포트
+  bootstrap-servers: localhost:29092
+  topic:
+    # 주문 이벤트를 주고받는 토픽 이름
+    async-orders: shop.async-orders.v1
+  consumer:
+    # 샘플 컨슈머 그룹
+    group-id: shop-async-consumer
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, info
+

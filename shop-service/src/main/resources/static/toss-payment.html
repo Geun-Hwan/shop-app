@@ -54,11 +54,11 @@
             document.getElementById('pay-button').addEventListener('click', function () {
                 tossPayments.requestPayment('간편결제', {
                     company: '토스페이',
-                    orderId: 'ORDER-' + Date.now(),
+                    orderId: 'order-123',
                     amount,
                     orderName: '테스트 상품',
-                    successUrl: 'http://localhost:8080/payments/success.html',
-                    failUrl: 'http://localhost:8080/payments/fail.html'
+                    successUrl: 'http://localhost:8000/shop-service/payments/success.html',
+                    failUrl: 'http://localhost:8000/shop-service/payments/fail.html'
                 });
             });
         } catch (error) {
